@@ -8,7 +8,13 @@
 <body>
     <h1>Simple HTML</h1>
 <?php
-echo "<div class='myclass'> Anything goes here</div>"
+echo "<div class='myclass'>Anything goes here</div>"
+?>
+<h2>Heading 2</h2>
+<?php
+    for ($i = 0; $i < 5; $i++) {
+        echo "<p>Paragraph No. $i</p>";
+    }
 ?>
 
 <footer>NOT done by PHP</footer>
