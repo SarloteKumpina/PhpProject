@@ -1,5 +1,5 @@
 <?php
-// include "../src/templates/header.php";
+include "../src/templates/header.php";
 //this is if elseif else (could do without elseif)
 $a = 5;
 if ($a > 5) {
@@ -37,4 +37,4 @@ while ($i > 0) {
     echo "<hr> \$i is $i";
     $i--;
 }
-// include "../src/templates/footer.html";
+include "../src/templates/footer.html";

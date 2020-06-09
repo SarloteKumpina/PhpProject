@@ -8,8 +8,3 @@
     <script src="scripts/myjs.js" defer></script>
 </head>
 <body>
-    
-</body>
-
-
-</html>
