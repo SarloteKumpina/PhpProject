@@ -35,4 +35,16 @@ $myRevTextNew = strrev("SAULE");
 echo $myRevTextNew;
 echo "<hr>";
 
+// un string escaping piem $ = \$, ja ar dubultajām pēdiņām, bet ar '' nevajag šo \ likt
+echo 'no need to escape here $ works, but ';
+echo "need to escape here so \$ would work and this $i gives variable<hr>";
+
+//multi line string which let's you insert variables inside
+echo <<<MYSTRINGLIM
+    <footer>My name is "{$arr[6]}". I am printing some $i.
+        Now, I am printing some.
+        This should print a capitasl 'A': \X41
+    </footer>
+MYSTRINGLIM;
+
 
