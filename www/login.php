@@ -9,12 +9,14 @@ if (isset($_SESSION['myName'])) {
 echo "<hr>";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    echo "Cool got POST method, that will save my login";
+    echo "Cool got POST method, that will save my login. ";
     if (isset ($_POST['myName'])) {
         $_SESSION['myName'] = $_POST['myName'];
-        echo "Session saved";
+        //later we would add pasword checking
+        echo "Session saved!";
+        header("Location: login.php");
     }else {
-        echo "No myName set";
+        echo "No myName set!";
     }
 } else {
     echo "Not POST probably just a request " . $_SERVER['REQUEST_METHOD'];

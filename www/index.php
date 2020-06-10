@@ -16,7 +16,7 @@ if (isset($_GET['mymax'])){
     echo "<hr>No max set, sadface";
     $myMax = 15;
 }
-echo "<hr> will print up to $myMax elemente<hr>"
+echo "<hr> will print up to $myMax elemente<hr>";
 
 echo "<div class='mycontainer'>";
 
