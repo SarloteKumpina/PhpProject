@@ -12,7 +12,7 @@ function myAdder($a, $b) {
 }
 
 function printFizzBuzz($max=20) {
-    for ($i = 0; $i <$max; $i++) {
+    for ($i = 1; $i <$max; $i++) {
              
         if ($i % 3 === 0 && $i % 5 === 0) {
             $className = "fizzbuzz";
