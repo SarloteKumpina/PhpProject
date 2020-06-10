@@ -2,3 +2,36 @@
 body {
     background-color: beige;
 }
+
+.results {
+    width: 30px;
+    height: 30px;
+    border: solid green 3px;
+}
+
+.box {
+    width: 50px;
+    height: 50px;
+    background-color:cadetblue;
+}
+
+.mycontainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fizzbuzz {
+    background-color: darkolivegreen;
+}
+
+.fizz {
+    background-color: crimson;
+}
+
+.buzz {
+    background-color: burlywood;
+}
+
+.number {
+    background-color: dimgray;
+}
