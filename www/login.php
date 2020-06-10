@@ -1,16 +1,21 @@
-<form action="login.php" method="post">
-    <input type="email" name="myEmail" id="">
-    <input type="text" name="myName" id="">
-    <button type="submit">Login</button>
-</form>
 <?php
 session_start();
-if ($_SERVER['REQUEST_METHOD' == "POST"]) {
-    echo "cool got post method will save my  login"
-    if (isset ($_POST['myName'])){
-        $_SESSION['myName' = $_POST ['myName'];
+if (isset($_SESSION['myName'])) {
+    echo "Cool you are logged in " . $_SESSION['myName'];
+    include "../src/templates/logout.html";
+} else {
+    include "../src/templates/loginform.html";
+}
+echo "<hr>";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    echo "Cool got POST method, that will save my login";
+    if (isset ($_POST['myName'])) {
+        $_SESSION['myName'] = $_POST['myName'];
         echo "Session saved";
     }else {
-        echo "no myName set"
+        echo "No myName set";
     }
+} else {
+    echo "Not POST probably just a request " . $_SERVER['REQUEST_METHOD'];
 }
