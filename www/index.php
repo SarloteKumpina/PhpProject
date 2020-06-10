@@ -6,6 +6,10 @@ $arr = ["Valdis", "Pēteris", "Līga"];
 makeUnorderedList($arr);
 
 echo "<div class='results'>" . myAdder(5,200) . "</div>";
+var_dump($_GET);
+
+echo "<hr>My max is" . $_GET['mymax'];
+
 echo "<div class='mycontainer'>";
 printFizzBuzz(30);
 echo"</div>";
