@@ -11,7 +11,8 @@ function myAdder($a, $b) {
     return $a+$b;
 }
 
-function printFizzBuzz($max=20) {
+function printFizzBuzz($max=20, $containerClass = 'mycontainer') {
+    echo "<div class='$containerClass'>";
     for ($i = 1; $i <$max; $i++) {
              
         if ($i % 3 === 0 && $i % 5 === 0) {
@@ -29,4 +30,5 @@ function printFizzBuzz($max=20) {
     }
     echo "<div class = 'box $className'>$text</div>";
     }
+    echo "</div>";
 }
