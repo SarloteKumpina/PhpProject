@@ -10,13 +10,13 @@ if (isset($_SESSION['myName'])) {
     echo $_SESSION['myName'] . " you have visited this page " . $_SESSION['indexVisits'] . " times.<hr>";
 }
 
-include "templates/fizzform.html";
 
 // $arr = ["Valdis", "Pēteris", "Līga"];
 // makeUnorderedList($arr);
 
 echo "<div class='results'>" . myAdder(5,200) . "</div>";
 echo "<hr>";
+include "templates/fizzform.php";
 var_dump($_GET);
 
 if (isset($_GET['myMax'])){
@@ -26,6 +26,9 @@ if (isset($_GET['myMax'])){
     echo "<hr>No max set, sadface...";
     $myMax = 15;
 }
+
+include "templates/fizzform.php";
+include "templates/fizzform.php";
 echo "<hr> Will print up to $myMax elements.<hr>";
 
 echo "<hr>";
