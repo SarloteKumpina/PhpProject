@@ -9,3 +9,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 header("Location: /"); //always go back to MAIN page
+ 
