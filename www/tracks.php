@@ -17,11 +17,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
-//!!NOT SAFE
+//now safe
 if (isset ($_GET['artistName'])) {
-    $aName = "%" . $_GET['artistName'] . "%";
+    $aName = "%" . $_GET['artistName'] . "%"; //we add % to get fuzzy matches
     $stmt = $conn->prepare("SELECT * FROM tracks WHERE artist LIKE (?)");
-    $stmt->bind_param("s", $aName); //s means string here
+    $stmt->bind_param("s", $aName); //s means string here 
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
@@ -36,11 +36,15 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         // var_dump($row);
+            $id = $row["id"];
             $html = "id: " . $row["id"];
             $html .= " name - " . $row["name"];
             $html .= "artist: " . $row["artist"];
             $html .= "Created on " . $row["created"];
-            $html .= "<hr>";
+            $html .= "<form action='deleteSong.php' method='post'>";
+            $html .= "<button type='submit' name= 'deleteSong' value= '$id'>";
+            $html .= "DELETE SONG</button>";
+            $html .= "</form>";
             echo $html;
     //   echo "id: " . $row["id"]. " - Name: " . $row["id"]. " " . $row["name"]. "<br>";
     }
