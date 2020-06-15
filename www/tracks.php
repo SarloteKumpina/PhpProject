@@ -1,6 +1,13 @@
 <?php
+session_start();
 require_once "../config/config.php";
-echo "Reading my tracks<hr>";
+
+if (!isset($_SESSION['myName'])) {
+    include "../src/templates/loginForm.html";
+    exit(); //early exit
+} 
+
+// echo "Reading my tracks<hr>";
 //TODO move db config off public files!!! Lai skreiperis netiek klāt manai publiskajai datubāzei!!!
 // $servername = "localhost";
 // $username = "root";
@@ -37,10 +44,18 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         // var_dump($row);
             $id = $row["id"];
-            $html = "id: " . $row["id"];
-            $html .= " name - " . $row["name"];
-            $html .= "artist: " . $row["artist"];
+            $name = $row['name'];
+            $artist = $row['artist'];
+
+            $html = "<form action= 'updateSong.php' method='post'>";
+            $html .= "id: " . $row["id"];
+            $html .= "<input name='trackName' value='$name'>";
+            $html .= "<input name='artistName' value='$artist'>";
             $html .= "Created on " . $row["created"];
+            $html .= "Updated on " . $row["updated"];
+            $html .= "<button type='submit' name='updateSong' value='$id'> UPDATE SONG </button>";
+            $html .= "</form>";
+
             $html .= "<form action='deleteSong.php' method='post'>";
             $html .= "<button type='submit' name= 'deleteSong' value= '$id'>";
             $html .= "DELETE SONG</button>";
