@@ -1,8 +1,11 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if(isset($_POST['logout'])) {
-        unset($_session['id'])
-        unset($_session['user'])
+        unset($_SESSION['id']);
+        unset($_SESSION['user']);
+        
     }
 }
+header("Location: /tracks.php"); //load this page
 

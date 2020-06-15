@@ -18,6 +18,7 @@ echo "Hello " . $_SESSION['user'] . " your id is " . $_SESSION['id'] . "<hr>";
 // $servername = "localhost";
 // $username = "root";
 // $password = "";
+
 include "../src/templates/logoutForm.html";
 include "../src/templates/songfilterform.html";
 include "../src/templates/addnewsongform.html";
