@@ -2,17 +2,23 @@
 session_start();
 require_once "../config/config.php";
 
-if (!isset($_SESSION['myName'])) {
+if (!isset($_SESSION['user'])) {
     include "../src/templates/loginForm.html";
     exit(); //early exit
 } 
+if (!isset($_SESSION['id'])) {
+    include "../src/templates/loginForm.html";
+    exit(); //early exit
+} 
+
+echo "Hello " . $_SESSION['user'] . " your id is " . $_SESSION['id'] . "<hr>";
 
 // echo "Reading my tracks<hr>";
 //TODO move db config off public files!!! Lai skreiperis netiek klāt manai publiskajai datubāzei!!!
 // $servername = "localhost";
 // $username = "root";
 // $password = "";
-
+include "../src/templates/logoutForm.html";
 include "../src/templates/songfilterform.html";
 include "../src/templates/addnewsongform.html";
 
@@ -27,13 +33,21 @@ echo "Connected successfully";
 //now safe
 if (isset ($_GET['artistName'])) {
     $aName = "%" . $_GET['artistName'] . "%"; //we add % to get fuzzy matches
-    $stmt = $conn->prepare("SELECT * FROM tracks WHERE artist LIKE (?)");
-    $stmt->bind_param("s", $aName); //s means string here 
+    $stmt = $conn->prepare("SELECT * 
+    FROM tracks 
+    WHERE artist 
+    LIKE (?)
+    AND userid = (?)");
+    $stmt->bind_param("sd", $aName, $_SESSION['id']); //s means string here 
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    $sql = "SELECT * FROM tracks";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT * 
+    FROM tracks 
+    WHERE userid = (?)");
+    $stmt->bind_param("d", $_SESSION['id']); //s means string here 
+    $stmt->execute();
+    $result = $stmt->get_result();
 }
 
 

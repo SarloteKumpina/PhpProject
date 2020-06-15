@@ -11,10 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($result->num_rows == 1) {
         //cool we found our user
        $row = $result->fetch_assoc();
-       var_dump($row);
-       die("just for now");
-       //TODO save username and id in session
-       //FIXME fix this bug
+    //    var_dump($row);
+    //    die("just for now");
+       //TODO verify hash
+       $_SESSION['user'] = $row['username'];
+       $_SESSION['id'] = $row['id'];
     }
 
     // echo "Cool got POST method, that will save my login. ";
@@ -24,5 +25,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         echo "Session saved!";
     }
 }
-header("Location: /"); //always go back to MAIN page
+header("Location: /tracks.php"); //always go back to MAIN page
  
