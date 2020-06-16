@@ -1,19 +1,22 @@
 <?php
-include "../src/templates/header.php";
 session_start();
 require_once "../config/config.php";
+require_once "../src/templates/header.php";
 
-if (!isset($_SESSION['user'] )) {
+
+if (!isset($_SESSION['user']) || !isset($_SESSION['id'])) {
+    if (isset($_GET['tryagain'])){
+        include "../src/templates/tryAgain.html";
+    }
     include "../src/templates/loginForm.html";
     include "../src/templates/registerForm.html";
-    exit(); //early exit
-} 
-if (!isset($_SESSION['id'])) {
-    include "../src/templates/loginForm.html";
-    include "../src/templates/registerForm.html";
-    exit(); //early exit
-} 
+    include "../src/templates/footer.html";
 
+    exit(); //early exit
+} 
+if(isset($_GET['loginsuccess'])){
+    echo "<div class='loginsuccess'>Sucessful login</div>";
+}
 echo "Hello " . $_SESSION['user'] . " your id is " . $_SESSION['id'] . "<hr>";
 
 // echo "Reading my tracks<hr>";
@@ -61,12 +64,21 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         // var_dump($row);
+            $myclasses = "single-song";
+            $checked = "";
+            if($row['isHeard']) {
+                $myclasses .= " heard-song";
+                $checked = "checked";
+            }
+                
             $id = $row["id"];
             $name = $row['name'];
             $artist = $row['artist'];
-
-            $html = "<form action= 'updateSong.php' method='post'>";
+            // $isHeard = $row['isHeard'];
+            $html = "<div class='$myclasses'>";
+            $html .= "<form action= 'updateSong.php' method='post'>";
             $html .= "id: " . $row["id"];
+            $html .= "<input type='checkbox' name='isHeard' $checked>";
             $html .= "<input name='trackName' value='$name'>";
             $html .= "<input name='artistName' value='$artist'>";
             $html .= "Created on " . $row["created"];
@@ -78,6 +90,7 @@ if ($result->num_rows > 0) {
             $html .= "<button type='submit' name= 'deleteSong' value= '$id'>";
             $html .= "DELETE SONG</button>";
             $html .= "</form>";
+            $html .= "</div>";
             echo $html;
     //   echo "id: " . $row["id"]. " - Name: " . $row["id"]. " " . $row["name"]. "<br>";
     }
@@ -102,3 +115,4 @@ if ($result->num_rows > 0) {
 //             echo $html;
 //     echo "</div>";
 // }
+require_once "../src/templates/footer.html";

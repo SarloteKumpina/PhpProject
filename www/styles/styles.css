@@ -41,3 +41,12 @@ body {
 .register-form {
     background-color: rgb(204, 155, 20);
 }
+.single-song {
+    margin: 5px;
+    background-color: darkcyan;
+}
+
+.heard-song {
+    margin: 15px;
+    background-color: rgb(35, 177, 90)
+}

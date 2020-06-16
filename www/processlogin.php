@@ -9,17 +9,31 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $stmt->bind_param("s", $_POST["myName"]);
         $stmt->execute();
         $result = $stmt->get_result();
-
-        if ($result->num_rows == 1) {
+        if ($result->num_rows != 1) {
+            //not showing the user reason for failing to login
+            //user does not exists
+             header("Location: /tracks.php?tryagain=true");
+            exit();
+        }
+        //ja dabūn kaut vai vienu rezultātu => zini ka lietotājs eksistē
+        // if ($result->num_rows == 1) {
             //cool we found our user
             $row = $result->fetch_assoc();
             //    var_dump($row);
             //    die("just for now");
             //TODO verify hash
+            if (password_verify($_POST['pw'], $row['hash'])){
             $_SESSION['user'] = $row['username'];
             $_SESSION['id'] = $row['id'];
+            header("Location: /tracks.php?loginsuccess=true"); //always go back to MAIN page
+            } else {
+                //not showing the user reason for failing to login
+                //user exists bad paswor does not verity
+                header("Location: /tracks.php?badlogin=true");
+                exit();
+            } 
         }
-    }
+    // }
     //TODO check for register button press and registers new user
 }
 
@@ -30,5 +44,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //     echo "Session saved!";
     // }
 
-header("Location: /tracks.php"); //always go back to MAIN page
+
  
