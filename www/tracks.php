@@ -1,13 +1,16 @@
 <?php
+include "../src/templates/header.php";
 session_start();
 require_once "../config/config.php";
 
-if (!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'] )) {
     include "../src/templates/loginForm.html";
+    include "../src/templates/registerForm.html";
     exit(); //early exit
 } 
 if (!isset($_SESSION['id'])) {
     include "../src/templates/loginForm.html";
+    include "../src/templates/registerForm.html";
     exit(); //early exit
 } 
 
@@ -82,20 +85,20 @@ if ($result->num_rows > 0) {
     echo "0 results";
   }
 
-$sql = "SELECT * FROM tracks WHERE artist LIKE 'ABBA'";
-$result = $conn->query($sql);
+// $sql = "SELECT * FROM tracks WHERE artist LIKE 'ABBA'";
+// $result = $conn->query($sql);
 
 // $allrows = $result->fetch_all(MYSQLI_BOTH);
-$allrows = $result->fetch_all(MYSQLI_ASSOC);
-var_dump($allrows);
-foreach ($allrows as $rowindex => $row) {
-    echo "<div class = 'myrow' id='row-$rowindex'>";
-    // var_dump($row);
-    $html = "id: " . $row["id"];
-            $html .= " name - " . $row["name"];
-            $html .= "artist: " . $row["artist"];
-            $html .= "Created on " . $row["created"];
-            // $html .= "<hr>";
-            echo $html;
-    echo "</div>";
-}
+// $allrows = $result->fetch_all(MYSQLI_ASSOC);
+// // var_dump($allrows);
+// foreach ($allrows as $rowindex => $row) {
+//     echo "<div class = 'myrow' id='row-$rowindex'>";
+//     var_dump($row);
+//     $html = "id: " . $row["id"];
+//             $html .= " name - " . $row["name"];
+//             $html .= "artist: " . $row["artist"];
+//             $html .= "Created on " . $row["created"];
+//             // $html .= "<hr>";
+//             echo $html;
+//     echo "</div>";
+// }

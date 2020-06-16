@@ -35,3 +35,9 @@ body {
 .number {
     background-color: dimgray;
 }
+.login-form {
+    background-color: rgb(33, 218, 48);
+}
+.register-form {
+    background-color: rgb(204, 155, 20);
+}
