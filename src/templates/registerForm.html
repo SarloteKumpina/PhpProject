@@ -2,9 +2,9 @@
 <form action="processRegistration.php" method="post">
     <!-- <input type="email" name="myEmail" id=""> -->
     <label for="myName">My Name</label>
-    <input type="text" name="myName" id="" placeholder="Enter your username">
-    <input type="email" name="myEmail" id="" placeholder="email@domain.ext">
-    <input type="password" name="pw" id="" placeholder="password">
+    <input type="text" name="myName" minlength="3" id="" placeholder="Enter your username" required>
+    <input type="email" name="myEmail" id="" placeholder="email@domain.ext" required>
+    <input type="password" name="pw" id="" placeholder="password" required minlength="8">
     <button type="submit" name="register">Register</button>
 </form>
 </div>
