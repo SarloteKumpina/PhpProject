@@ -37,7 +37,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
-//now safe
+// now safe
 if (isset ($_GET['artistName'])) {
     $aName = "%" . $_GET['artistName'] . "%"; //we add % to get fuzzy matches
     $stmt = $conn->prepare("SELECT * 
