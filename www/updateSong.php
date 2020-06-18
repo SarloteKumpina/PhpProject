@@ -1,4 +1,6 @@
 <?php
+require "../src/templates/checksession.php";
+
 if (!isset($_POST['updateSong'])){
     // die("You are not adding a song are you?");
     header("Location: /tracks.php"); //we could redirect to error page as well
@@ -28,8 +30,9 @@ $stmt = $conn->prepare("UPDATE `tracks`
         `artist` = (?),
         updated = CURRENT_TIMESTAMP(),
         concert = STR_TO_DATE((?), '%Y-%m-%d')
-        WHERE `tracks`.`id` = (?)");
-$stmt->bind_param("dsssd", $isHeard, $trackName, $artistName, $concert, $id); //d means integer here (decimal number)
+        WHERE `tracks`.`id` = (?)
+        AND tracks.userid = (?)");
+$stmt->bind_param("dsssdd", $isHeard, $trackName, $artistName, $concert, $id, $_SESSION['id']); //d means integer here (decimal number)
 $stmt->execute();
 
 // echo "Ok should have added song now";
